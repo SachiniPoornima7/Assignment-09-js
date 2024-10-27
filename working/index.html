@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Java Script Knight Rider</h1>
+  <div class="row lightPannel">
+    <div class="inner light">
+
+    </div>
+    <div class="inner light"></div>
+    <div class="inner light"></div>
+    <div class="inner light"></div>
+    <div class="inner light"></div>
+    <div class="inner light"></div>
+  </div>
+  <div class="a">
+    <button href="" id="startButton">start</button>
+    <button href="" id="stopButton">end</button>
+  </div>
+
+</div>
+
+<script src="./lib/jquery-3.7.1.min.js"></script>
+
+<script>
+
+  const  light_count = 6 ;
+  let current_light = -1 ;
+  let direction = "RIGHT";
+  let intervalId = null;
+
+
+  updateLight = () => {
+    if (direction ==="RIGHT") {
+      current_light++;
+      $(".light").css("background", "white");
+      $(".light").eq(current_light).css("background-color", "red");
+      $(".light").eq(current_light+1).css("background-color", "pink");
+      $(".light").eq(current_light+2).css("background-color", "white");
+
+      if (current_light==light_count-1){
+        direction = "LEFT";
+      }
+    }else {
+      current_light--;
+      $(".light").css("background", "white");
+      $(".light").eq(current_light).css("background-color", "red");
+      $(".light").eq(current_light+1).css("background-color", "pink");
+      $(".light").eq(current_light+2).css("background-color", "white");
+      if (current_light == 0){
+        direction = "RIGHT";
+      }
+    }
+
+  }
+
+
+
+
+  $("#startButton").click(function (){
+    intervalId = setInterval(updateLight , 100)
+  });
+  $("#stopButton").click(function (){
+    clearInterval(intervalId)
+  });
+
+
+
+// $("#startButton").click(function (){
+//   let colour = ["red","pink","yellow","blue","black"]
+//   setinterval = setInterval(()=>{
+//     let last = colour.pop();
+//     colour.unshift(last);
+//
+//     for (let i = 0 ; i < colour.length ; i++){
+//       $(".inner").eq(i).css("background-color",colour[i]);
+//     }
+//
+//   },30)
+// });
+
+
+</script>
+</body>
+</html>
